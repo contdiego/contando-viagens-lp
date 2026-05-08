@@ -284,7 +284,7 @@ h1 {
 @media (max-width: 992px) {
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
     .hero-list li { justify-content: center; }
-    .hero-image { order: -1; margin-bottom: 20px; }
+    .hero-image { margin-bottom: 20px; }
     .authority-card { max-width: 320px; padding: 30px 20px; }
     .photo-glow-outer { width: 140px; height: 140px; }
     .brand-info .brand-name { font-size: 1.6rem; }
