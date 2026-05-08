@@ -242,6 +242,22 @@ h1 {
 
 .glow-button { position: relative; z-index: 1; }
 
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    width: 100%;
+    margin-top: 16px;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5d;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp i { font-size: 1.2rem; }
+
 /* Testimonials */
 .testimonials-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 
@@ -286,6 +302,7 @@ h1 {
     .hero-list li { justify-content: center; }
     .hero-image { margin-bottom: 20px; }
     .authority-card { max-width: 320px; padding: 30px 20px; }
+    .consultant-cta { max-width: 320px; margin-left: auto; margin-right: auto; }
     .photo-glow-outer { width: 140px; height: 140px; }
     .brand-info .brand-name { font-size: 1.6rem; }
     .brand-info .brand-sub { font-size: 1.2rem; }
