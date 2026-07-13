@@ -1,31 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Reveal animations on scroll
-    const reveals = document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const revealOnScroll = () => {
-        for (let i = 0; i < reveals.length; i++) {
-            const windowHeight = window.innerHeight;
-            const elementTop = reveals[i].getBoundingClientRect().top;
-            const elementVisible = 150;
-
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add('active');
-            }
-        }
-    };
-
-    window.addEventListener('scroll', revealOnScroll);
-    
-    // Initial check on load
-    revealOnScroll();
-
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+        revealElements.forEach((element) => element.classList.add('is-visible'));
+    } else {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    currentObserver.unobserve(entry.target);
+                }
             });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach((element) => observer.observe(element));
+    }
+
+    document.querySelectorAll('[data-cta-location]').forEach((cta) => {
+        cta.addEventListener('click', () => {
+            if (typeof window.fbq === 'function') {
+                window.fbq('track', 'Lead', {
+                    content_name: 'Grupo de ofertas',
+                    content_category: cta.dataset.ctaLocation
+                });
+            }
         });
     });
 });

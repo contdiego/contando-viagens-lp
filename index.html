@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contando Viagens | Grupo Exclusivo de Ofertas</title>
-    <meta name="description" content="Entre no grupo exclusivo da Contando Viagens e receba ofertas de passagens e pacotes com suporte especializado e foco no seu conforto.">
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#062b4a">
+    <title>Contando Viagens | Ofertas de viagem para Recife e João Pessoa</title>
+    <meta name="description" content="Entre gratuitamente no grupo de ofertas da Contando Viagens e receba oportunidades de passagens e pacotes saindo de Recife e João Pessoa.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -24,157 +25,177 @@
     fbq('init', '3528178480663408');
     fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=3528178480663408&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=3528178480663408&ev=PageView&noscript=1"></noscript>
     <!-- End Meta Pixel Code -->
 </head>
 <body>
-    <div class="bg-overlay"></div>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-    <header class="header">
-        <div class="container flex-header">
-            <div class="logo-container">
-                <span class="logo-text-fallback">CONTANDO <span class="text-gold">VIAGENS</span></span>
-            </div>
-            <div class="header-contact">
-                <a href="https://www.instagram.com/contandoviagenss/" target="_blank" class="insta-link"><i class="fab fa-instagram"></i> @contandoviagenss</a>
-            </div>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" href="#inicio" aria-label="Contando Viagens - início">
+                <span class="brand-mark"><i class="fa-solid fa-plane-departure"></i></span>
+                <span>CONTANDO <strong>VIAGENS</strong></span>
+            </a>
+            <a class="header-instagram" href="https://www.instagram.com/contandoviagenss/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i>
+                <span>@contandoviagenss</span>
+            </a>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <main id="conteudo">
+        <section class="hero" id="inicio">
             <div class="container hero-grid">
-                <div class="hero-content reveal">
-                    <span class="badge">Sua Agência de Viagens</span>
-                    <h1>Viagens Inesquecíveis com <span class="text-gold">Suporte e Conforto</span> Absoluto</h1>
-                    <p class="subtitle-regional">Ofertas exclusivas com saídas de <strong>Recife e João Pessoa</strong></p>
-                    
-                    <ul class="hero-list">
-                        <li><i class="fas fa-check-circle"></i> Fazemos o check-in para você</li>
-                        <li><i class="fas fa-check-circle"></i> Enviamos os cartões de embarque</li>
-                        <li><i class="fas fa-check-circle"></i> Acompanhamos toda a sua reserva</li>
-                        <li><i class="fas fa-check-circle"></i> Suporte jurídico especializado durante a viagem</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Sem custo adicional.</strong> Você só aproveita!</li>
-                    </ul>
+                <div class="hero-copy reveal">
+                    <p class="eyebrow"><span></span> Ofertas pensadas para quem sai do Nordeste</p>
+                    <h1>As próximas boas oportunidades de viagem podem chegar no seu <em>WhatsApp.</em></h1>
+                    <p class="hero-description">Entre gratuitamente no grupo da Contando Viagens e receba alertas de passagens e pacotes com saída de Recife e João Pessoa.</p>
 
-                    <a href="https://chat.whatsapp.com/E8IaWyrQtkeJks55UQvmTr?mode=gi_t" class="btn btn-primary glow-button main-cta">
-                        <span class="btn-text">Entre agora no Grupo de Ofertas</span>
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    
-                    <div class="social-proof-mini">
-                        <div class="avatars">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Viajante">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Viajante">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Viajante">
-                        </div>
-                        <p class="sp-text">+2 mil viajantes já aproveitaram</p>
+                    <div class="departure-cities" aria-label="Cidades de saída">
+                        <span><i class="fa-solid fa-location-dot"></i> Recife</span>
+                        <span><i class="fa-solid fa-location-dot"></i> João Pessoa</span>
                     </div>
-                </div>
-                
-                <!-- O Cartão de Autoridade (Foto preenchendo o retângulo) -->
-                <div class="hero-image reveal" style="transition-delay: 0.2s;">
-                    <div class="authority-card">
-                        <img src="founder.png" alt="Sua Foto" class="founder-photo-full">
-                    </div>
-                    <a href="https://wa.me/5581997869326" class="btn btn-whatsapp glow-button consultant-cta">
-                        <i class="fab fa-whatsapp"></i> Fale com um Consultor
-                    </a>
-                </div>
-            </div>
-        </section>
 
-        <section class="benefits">
-            <div class="container">
-                <div class="grid benefits-grid">
-                    <div class="card benefit-card reveal">
-                        <div class="icon-box">
-                            <img src="logo.png" alt="Logo" class="mini-logo">
-                        </div>
-                        <h3>Suporte Personalizado</h3>
-                        <p>Acompanhamento total. Da reserva ao check-out, estamos com você em cada detalhe.</p>
+                    <a class="button button-primary main-cta" href="https://chat.whatsapp.com/E8IaWyrQtkeJks55UQvmTr?mode=gi_t" target="_blank" rel="noopener noreferrer" data-cta-location="hero">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>Quero receber ofertas no WhatsApp</span>
+                        <i class="fa-solid fa-arrow-right button-arrow"></i>
+                    </a>
+                    <p class="cta-note"><i class="fa-solid fa-circle-check"></i> Entrada gratuita · Sem compromisso · Saia quando quiser</p>
+                </div>
+
+                <div class="hero-visual reveal" style="--delay: 120ms">
+                    <div class="visual-orbit orbit-one"></div>
+                    <div class="visual-orbit orbit-two"></div>
+                    <div class="founder-frame">
+                        <img src="founder.png" alt="Especialista da Contando Viagens segurando um passaporte">
                     </div>
-                    <div class="card benefit-card reveal" style="transition-delay: 0.1s;">
-                        <div class="icon-box">
-                            <img src="logo.png" alt="Logo" class="mini-logo">
+                    <div class="human-card">
+                        <span class="human-card-icon"><i class="fa-solid fa-headset"></i></span>
+                        <div>
+                            <strong>Atendimento de verdade</strong>
+                            <small>Do planejamento ao embarque</small>
                         </div>
-                        <h3>Foco no Conforto</h3>
-                        <p>Curadoria rigorosa de hotéis e assentos para que sua única preocupação seja aproveitar.</p>
-                    </div>
-                    <div class="card benefit-card reveal" style="transition-delay: 0.2s;">
-                        <div class="icon-box">
-                            <img src="logo.png" alt="Logo" class="mini-logo">
-                        </div>
-                        <h3>Curadoria de Luxo</h3>
-                        <p>Acesso a experiências exclusivas e benefícios que agências comuns não conseguem.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="testimonials">
+        <section class="offer-types" aria-labelledby="ofertas-titulo">
             <div class="container">
-                <h2 class="section-title reveal">O que dizem nossos <span class="text-gold">Viajantes</span></h2>
-                <div class="grid testimonials-grid">
-                    <div class="card testimonial-card reveal">
-                        <div class="testimonial-header">
-                            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Mariana" class="user-photo">
-                            <div class="user-info">
-                                <strong>Mariana Silva</strong>
-                                <span>Viajou para Gramado</span>
-                            </div>
-                        </div>
-                        <p>"O suporte que recebi foi impecável. Todo o conforto planejado fez a diferença na nossa viagem."</p>
-                    </div>
-                    <div class="card testimonial-card reveal" style="transition-delay: 0.1s;">
-                        <div class="testimonial-header">
-                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Ricardo" class="user-photo">
-                            <div class="user-info">
-                                <strong>Ricardo Santos</strong>
-                                <span>Viajou para os Lençóis Maranhenses</span>
-                            </div>
-                        </div>
-                        <p>"Sempre viajei por conta, mas o nível de suporte da Contando Viagens é outro patamar. Atendimento humano de verdade."</p>
-                    </div>
-                    <div class="card testimonial-card reveal" style="transition-delay: 0.2s;">
-                        <div class="testimonial-header">
-                            <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="Ana" class="user-photo">
-                            <div class="user-info">
-                                <strong>Ana Paula</strong>
-                                <span>Viajou para Argentina</span>
-                            </div>
-                        </div>
-                        <p>"Finalmente uma agência que entende o valor do tempo e do bem-estar do cliente."</p>
-                    </div>
+                <div class="section-heading reveal">
+                    <p class="section-kicker">O que pode aparecer no grupo</p>
+                    <h2 id="ofertas-titulo">Uma oportunidade certa na hora certa faz toda a diferença.</h2>
+                    <p>Você recebe avisos claros para decidir com mais segurança — sem precisar procurar em dezenas de sites.</p>
+                </div>
+                <div class="offer-grid">
+                    <article class="offer-card reveal">
+                        <span class="offer-icon orange"><i class="fa-solid fa-plane"></i></span>
+                        <h3>Alertas de passagens</h3>
+                        <p>Oportunidades para voar pelo Brasil e pelo mundo com saída da sua região.</p>
+                    </article>
+                    <article class="offer-card reveal" style="--delay: 80ms">
+                        <span class="offer-icon teal"><i class="fa-solid fa-umbrella-beach"></i></span>
+                        <h3>Pacotes selecionados</h3>
+                        <p>Combinações de aéreo, hospedagem e experiências para viajar com praticidade.</p>
+                    </article>
+                    <article class="offer-card reveal" style="--delay: 160ms">
+                        <span class="offer-icon blue"><i class="fa-regular fa-calendar-check"></i></span>
+                        <h3>Datas que valem a pena</h3>
+                        <p>Ideias para feriados, férias e escapadas — sempre com curadoria humana.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section class="cta-final">
-            <div class="container">
-                <div class="cta-box card reveal">
-                    <h2>Sua jornada de viagens começa aqui</h2>
-                    <p class="cta-desc">Vagas limitadas para o nosso grupo de Ofertas com saídas de Recife e João Pessoa.</p>
-                    <a href="https://chat.whatsapp.com/E8IaWyrQtkeJks55UQvmTr?mode=gi_t" class="btn btn-primary glow-button">
-                        Entre agora no Grupo de Ofertas
-                    </a>
+        <section class="how-it-works" id="como-funciona" aria-labelledby="como-funciona-titulo">
+            <div class="container process-layout">
+                <div class="process-intro reveal">
+                    <p class="section-kicker">Simples assim</p>
+                    <h2 id="como-funciona-titulo">Você não precisa fazer tudo sozinho para viajar bem.</h2>
+                    <p>O grupo é o começo. Quando uma oportunidade fizer sentido para você, a Contando Viagens está por perto para ajudar nos detalhes.</p>
                 </div>
+                <ol class="steps-list">
+                    <li class="reveal">
+                        <span class="step-number">01</span>
+                        <div><h3>Entre no grupo</h3><p>Um clique e você passa a receber as oportunidades pelo WhatsApp.</p></div>
+                    </li>
+                    <li class="reveal" style="--delay: 80ms">
+                        <span class="step-number">02</span>
+                        <div><h3>Escolha o que combina com você</h3><p>Veja os detalhes e encontre a viagem que faz sentido para seu momento.</p></div>
+                    </li>
+                    <li class="reveal" style="--delay: 160ms">
+                        <span class="step-number">03</span>
+                        <div><h3>Conte com suporte</h3><p>Da reserva ao embarque, você tem atendimento humano quando precisar.</p></div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="support-section" aria-labelledby="suporte-titulo">
+            <div class="container support-card reveal">
+                <div class="support-copy">
+                    <p class="section-kicker light">Mais tranquilidade para viajar</p>
+                    <h2 id="suporte-titulo">Encontrar uma boa oferta é só o primeiro passo.</h2>
+                    <p>Quando você decide viajar, conta com orientação para organizar reserva, check-in e cartões de embarque.</p>
+                </div>
+                <ul class="support-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Acompanhamento da reserva</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Check-in e cartões de embarque</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Atendimento para dúvidas da viagem</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="faq-section" aria-labelledby="faq-titulo">
+            <div class="container faq-layout">
+                <div class="faq-intro reveal">
+                    <p class="section-kicker">Antes de entrar</p>
+                    <h2 id="faq-titulo">Sem letra miúda.</h2>
+                    <p>Estas são as dúvidas que costumam aparecer antes de entrar no grupo.</p>
+                </div>
+                <div class="faq-list reveal" style="--delay: 80ms">
+                    <details open>
+                        <summary>Entrar no grupo tem algum custo?<i class="fa-solid fa-plus"></i></summary>
+                        <p>Não. A entrada no grupo de ofertas é gratuita e não cria compromisso de compra.</p>
+                    </details>
+                    <details>
+                        <summary>Preciso comprar toda oferta que receber?<i class="fa-solid fa-plus"></i></summary>
+                        <p>Não. Você recebe as oportunidades e escolhe apenas aquelas que fizerem sentido para você.</p>
+                    </details>
+                    <details>
+                        <summary>Posso sair do grupo depois?<i class="fa-solid fa-plus"></i></summary>
+                        <p>Sim. Você pode sair do grupo quando quiser, diretamente pelo WhatsApp.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta" aria-labelledby="cta-final-titulo">
+            <div class="container final-cta-content reveal">
+                <p class="section-kicker">Sua próxima viagem começa aqui</p>
+                <h2 id="cta-final-titulo">Não deixe a próxima oportunidade passar.</h2>
+                <p>Entre agora e receba as próximas ofertas de viagem no WhatsApp.</p>
+                <a class="button button-primary" href="https://chat.whatsapp.com/E8IaWyrQtkeJks55UQvmTr?mode=gi_t" target="_blank" rel="noopener noreferrer" data-cta-location="final">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Entrar no grupo de ofertas</span>
+                    <i class="fa-solid fa-arrow-right button-arrow"></i>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Contando Viagens. | Siga-nos no Instagram <a href="https://www.instagram.com/contandoviagenss/" target="_blank" style="color: var(--primary-gold); text-decoration: none;">@contandoviagenss</a></p>
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>© 2026 Contando Viagens. Todos os direitos reservados.</p>
+            <a href="https://www.instagram.com/contandoviagenss/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> @contandoviagenss</a>
         </div>
     </footer>
 
-    <!-- Botão Fixo Mobile -->
-    <div class="sticky-cta-mobile">
-        <a href="https://chat.whatsapp.com/E8IaWyrQtkeJks55UQvmTr?mode=gi_t" class="btn btn-primary glow-button">
-            Entre agora no Grupo de Ofertas
+    <div class="mobile-cta" aria-label="Ação rápida">
+        <a class="button button-primary" href="https://chat.whatsapp.com/E8IaWyrQtkeJks55UQvmTr?mode=gi_t" target="_blank" rel="noopener noreferrer" data-cta-location="mobile-sticky">
+            <i class="fa-brands fa-whatsapp"></i><span>Receber ofertas no WhatsApp</span>
         </a>
     </div>
 
