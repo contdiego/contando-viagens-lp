@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cta.addEventListener('click', () => {
             if (typeof window.fbq === 'function') {
                 window.fbq('track', 'Lead', {
-                    content_name: 'Grupo de ofertas',
+                    content_name: cta.dataset.ctaName || 'Grupo de ofertas',
                     content_category: cta.dataset.ctaLocation
                 });
             }
