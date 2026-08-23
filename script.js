@@ -1,24 +1,24 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const revealElements = document.querySelectorAll('.reveal');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.addEventListener('DOMContentLoaded', function () {
+    var revealElements = document.querySelectorAll('.rv');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
-        revealElements.forEach((element) => element.classList.add('is-visible'));
+        revealElements.forEach(function (element) { element.classList.add('on'); });
     } else {
-        const observer = new IntersectionObserver((entries, currentObserver) => {
-            entries.forEach((entry) => {
+        var observer = new IntersectionObserver(function (entries, currentObserver) {
+            entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+                    entry.target.classList.add('on');
                     currentObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-        revealElements.forEach((element) => observer.observe(element));
+        revealElements.forEach(function (element) { observer.observe(element); });
     }
 
-    document.querySelectorAll('[data-cta-location]').forEach((cta) => {
-        cta.addEventListener('click', () => {
+    document.querySelectorAll('[data-cta-location]').forEach(function (cta) {
+        cta.addEventListener('click', function () {
             if (typeof window.fbq === 'function') {
                 window.fbq('track', 'Lead', {
                     content_name: cta.dataset.ctaName || 'Grupo de ofertas',

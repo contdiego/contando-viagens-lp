@@ -3,4 +3,4 @@ FROM easypanel/contandoviagens/lp-site:latest
 
 WORKDIR /app
 
-COPY index.html style.css script.js founder.png logo.png bg.png ./
+COPY index.html style.css script.js founder.jpg logo.png ./
