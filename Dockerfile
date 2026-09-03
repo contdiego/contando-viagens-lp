@@ -1,6 +1,8 @@
-# Reutiliza a imagem que o EasyPanel já usa, preservando a configuração de Nginx e PORT.
-FROM easypanel/contandoviagens/lp-site:latest
+# Site estatico servido por nginx, com politica de cache propria.
+# Substitui o build Nixpacks, que nao enviava nenhum cabecalho Cache-Control.
+FROM nginx:1.27-alpine
 
-WORKDIR /app
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html style.css script.js founder.jpg logo.png fortaleza.jpg noronha.jpg madri.jpg /usr/share/nginx/html/
 
-COPY index.html style.css script.js founder.jpg logo.png ./
+EXPOSE 80

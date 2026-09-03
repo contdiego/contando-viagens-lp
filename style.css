@@ -44,6 +44,7 @@ h2.display{font-size:clamp(1.95rem,3.4vw,3rem);line-height:1.1}
 .brand-mark img{width:23px;height:23px}
 .brand-name{font-size:.72rem;font-weight:600;letter-spacing:.17em;color:var(--petrol);line-height:1.25}
 .brand-name span{display:block;font-weight:400;font-size:.58rem;letter-spacing:.14em;color:var(--muted)}
+.topbar-right{display:flex;align-items:center;gap:20px}
 .ig{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:500;color:var(--muted)}
 .ig svg{width:16px;height:16px}
 
@@ -222,6 +223,7 @@ details[open] .faq-sign::after{transform:scaleY(0)}
   .wrap{width:calc(100% - 32px)}
   .brand-name span{display:none}
   .topbar .ig span{display:none}
+  .topbar-right .btn{display:none}
   .hero{padding:20px 0 56px}
   .hero h1{margin:14px 0 12px}
   .hero .lede{margin-bottom:20px;font-size:.95rem}
