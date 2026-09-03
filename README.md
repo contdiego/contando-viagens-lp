@@ -39,8 +39,14 @@ não geram mais.
 **Consequência:** o código pode estar no GitHub e o site continuar servindo a versão antiga
 por tempo indefinido. Nunca assuma que o push publicou.
 
-**Como arrumar (pendente):** GitHub → repositório → Settings → Webhooks. Verificar se o
-webhook do EasyPanel existe, se está ativo e se as últimas entregas falharam.
+**Causa raiz encontrada (03/09):** o EasyPanel precisa de um **GitHub Token** configurado
+para conseguir criar/manter o webhook em repositórios privados. Sem o token, o botão
+"Ativar Deploy Automático" (Configurações do app → aba Fonte) volta sozinho para desligado —
+o clique parece funcionar mas não muda nada.
+
+**Como arrumar (pendente, depende do Diego):** EasyPanel → **Configurações** (ícone de
+engrenagem, canto superior direito) → gerar/colar um GitHub Personal Access Token com escopo
+`repo`. Depois disso, voltar em `lp-site` → Fonte e clicar em "Ativar Deploy Automático".
 
 ---
 
@@ -52,27 +58,47 @@ webhook do EasyPanel existe, se está ativo e se as últimas entregas falharam.
 | Painel | EasyPanel em `http://187.77.58.105:3000` |
 | Projeto / app | `contandoviagens` / `lp-site` |
 | Fonte do build | GitHub `contdiego/contando-viagens-lp`, branch `main`, caminho `/` |
-| Builder | **Nixpacks 1.41.0** |
-| Servidor web | nginx 1.24.0 |
-| Domínio | contandoviagens.com.br |
+| Builder | **Dockerfile** (`nginx:1.27-alpine`) — trocado de Nixpacks em 03/09 |
+| Servidor web | nginx 1.27.5 (Alpine) |
+| Domínio | contandoviagens.com.br (mais `www` e o endereço interno do EasyPanel) |
+| Porta do container | **80** — os três domínios apontam para `http://contandoviagens_lp-site:80/` |
 
-### Duas armadilhas conhecidas
+### Cache-Control (resolvido em 03/09)
 
-**O `Dockerfile` do repositório não é usado.** O build é Nixpacks. O arquivo está lá por
-herança, e ainda contém `FROM easypanel/contandoviagens/lp-site:latest`, uma referência
-circular à própria imagem. Editar esse arquivo não muda nada no site. Pode ser apagado.
+Até 03/09 o nginx não mandava `Cache-Control` nenhum — nem no HTML, nem no CSS, nem nas
+imagens. Sem essa instrução, cada navegador inventava um prazo próprio (mais ou menos 10% do
+tempo desde a última modificação do arquivo), o que causou o susto do dia 23/08: HTML novo
+sendo aplicado sobre CSS antigo em cache, página aparecendo quebrada.
 
-**O nginx não manda `Cache-Control`.** Nem no HTML, nem no CSS, nem nas imagens. Sem essa
-instrução, cada navegador inventa um prazo próprio — mais ou menos 10% do tempo desde a
-última modificação do arquivo. Um arquivo parado há 20 dias fica guardado por cerca de 2 dias.
+**Correção aplicada:** o build passou de Nixpacks para um `Dockerfile` próprio
+(`nginx:1.27-alpine`), com `nginx.conf` definindo os cabeçalhos abaixo. Confirmado ao vivo em
+`https://contandoviagens.com.br` — resposta mostra `server: nginx/1.27.5` e os
+`Cache-Control` corretos em cada tipo de arquivo:
 
-Foi o que causou o susto do dia 23/08: HTML novo sendo aplicado sobre CSS antigo em cache,
-com a página aparecendo quebrada.
+| Arquivo | Cache-Control |
+|---|---|
+| `/` e `.html` | `no-cache` — sempre revalida |
+| `.css` e `.js` | `max-age=31536000` — versionados pelo `?v=` no index.html |
+| imagens e fontes | `max-age=604800` (7 dias) |
 
-*Mitigação aplicada:* CSS e JS são chamados com versão (`style.css?v=3`), então basta subir
-o número para forçar todo mundo a baixar de novo.
-*Correção definitiva (pendente):* configurar o nginx para mandar `Cache-Control: no-cache`
-no HTML e cache longo nos arquivos versionados.
+O gzip vem junto: index.html de 22 KB para 4,6 KB, style.css de 14,5 para 4,2.
+
+**Como mexer:** EasyPanel → app `lp-site` → Fonte → Construção. Está marcado **Dockerfile**.
+A porta do container continua 80, que é o que os domínios esperam.
+
+**Para voltar ao Nixpacks (rollback):** mesma tela, marcar **Nixpacks** e Implantar. Isso
+volta a perder os cabeçalhos de cache. Menos de um minuto.
+
+**Pegadinha do EasyPanel ao trocar o método de build:** o primeiro "Implantar" depois de
+marcar Dockerfile pode terminar em poucos segundos, sem log de build, reaproveitando a imagem
+antiga em cache — o site parece no ar mas continua servindo a versão velha (`server` header
+não muda). Se isso acontecer, usar **Forçar Reconstrução** (menu de ferramentas ao lado do
+botão Implantar) para ignorar o cache e buildar de verdade — dá para confirmar pelo log, que
+deve mostrar os passos `docker build` completos (`FROM nginx:1.27-alpine`, `COPY`, etc.).
+
+**Cuidado ao trocar uma foto:** as imagens ficam 7 dias em cache pelo nome do arquivo. Se
+substituir uma foto mantendo o mesmo nome, quem já visitou continua vendo a antiga. Use nome
+novo (`madri-2.jpg`) e atualize a referência no `index.html`.
 
 ---
 
@@ -82,6 +108,8 @@ no HTML e cache longo nos arquivos versionados.
 index.html        página inteira, sem framework
 style.css         sistema visual completo
 script.js         seletor de cidade, barra fixa, animação de entrada, Pixel
+Dockerfile        build da imagem: nginx:1.27-alpine + arquivos do site
+nginx.conf        cabeçalhos de Cache-Control, gzip
 fortaleza.jpg     foto do card SSA · REC → FOR
 noronha.jpg       foto do card REC → FEN
 madri.jpg         foto do card REC · FOR → MAD
@@ -93,11 +121,8 @@ _mockups/         propostas de design (ignorado pelo git)
 **Peso da primeira carga:** cerca de 491 KB. O `founder.jpg` carrega só quando o visitante
 rola até ele, e a foto de Fortaleza é pré-carregada por abrir a fileira.
 
-### Arquivos sem uso — podem ser apagados
-
-- `founder.png` — 5 MB, substituído pelo `founder.jpg` de 101 KB
-- `bg.png` — 683 KB, textura abstrata, nunca referenciada
-- `Dockerfile` — ignorado pelo Nixpacks
+Apagados em 25/08: `founder.png` (5 MB), `bg.png` (683 KB) e o `Dockerfile` antigo, que
+tinha uma referência circular à própria imagem e era ignorado pelo Nixpacks.
 
 ---
 
@@ -270,12 +295,13 @@ no caso dos grupos, o nome muda conforme a cidade escolhida no seletor.
 
 ### Técnico
 
-- [ ] **Webhook do GitHub** — enquanto não voltar, todo deploy é manual
-- [ ] **Cabeçalhos de cache no nginx**
+- [x] **Cabeçalhos de cache no nginx** — resolvido em 03/09, ver seção 2
+- [x] **Apagar** `founder.png`, `bg.png` e o `Dockerfile` antigo (referência circular) — feito em 25/08
+- [ ] **Webhook do GitHub** — depende do Diego adicionar um GitHub Token nas Configurações do
+      EasyPanel (ver seção 1). Até lá, todo deploy continua manual.
 - [ ] **Teste em Safari de iPhone real** — tudo foi testado em Chromium emulando o tamanho da
       tela. Falta confirmar no aparelho: o desfoque da barra fixa, o comportamento dela com a
       barra de endereço do Safari, e a inércia do carrossel
-- [ ] **Apagar** `founder.png`, `bg.png` e `Dockerfile`
 
 ---
 
@@ -289,3 +315,4 @@ no caso dos grupos, o nome muda conforme a cidade escolhida no seletor.
 | 23/08 | Versão nos arquivos e conteúdo à prova de JS quebrado, depois do incidente de cache |
 | 23/08 | Nova mensagem de cotação no WhatsApp |
 | 25/08 | **A oferta no centro.** Cards com foto do destino no hero, retrato movido para a seção de atendimento, seletor de cidade, caminho da cotação reforçado |
+| 03/09 | Botão "Falar com a agência" restaurado no cabeçalho (tinha sido perdido na migração), README criado, `founder.png`/`bg.png`/`Dockerfile` antigo apagados, build trocado de Nixpacks para Dockerfile próprio com `Cache-Control` correto (nginx 1.27.5), causa raiz do webhook diagnosticada |
