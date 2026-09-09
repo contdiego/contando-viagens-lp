@@ -39,6 +39,15 @@ não geram mais.
 **Consequência:** o código pode estar no GitHub e o site continuar servindo a versão antiga
 por tempo indefinido. Nunca assuma que o push publicou.
 
+### Segunda armadilha: o Dockerfile não copia diretório
+
+O `COPY` do Dockerfile é uma **lista explícita de arquivos**. Página nova em subpasta
+(`privacidade/`, `termos/`) precisa de uma linha `COPY` própria. Sem ela o arquivo chega ao
+GitHub, o deploy roda sem erro, a home atualiza — e a URL nova responde 404. Aconteceu em
+09/09 com as duas páginas legais.
+
+**Ao criar qualquer página nova: acrescentar o `COPY` antes de fazer o push.**
+
 **Causa raiz encontrada (03/09):** o EasyPanel precisa de um **GitHub Token** configurado
 para conseguir criar/manter o webhook em repositórios privados. Sem o token, o botão
 "Ativar Deploy Automático" (Configurações do app → aba Fonte) volta sozinho para desligado —
