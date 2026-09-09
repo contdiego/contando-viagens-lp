@@ -179,14 +179,14 @@ A economia visual é o que faz a página parecer cara.
 
 ## 5. Estrutura da página
 
-1. **Cabeçalho fixo** — marca, Instagram, botão de cotação (escondido no celular)
+1. **Cabeçalho fixo** — marca, links sociais (Instagram, YouTube, TikTok), botão de cotação (escondido no celular)
 2. **Hero** — título, subtítulo, **cards de oferta**, seletor de cidade, dois botões
 3. **Como funciona** — três passos numerados
 4. **Quem está do outro lado** — faixa escura com o retrato do Diego
 5. **Sua viagem inteira** — os 10 serviços da agência em índice de duas colunas
 6. **Sem letra miúda** — FAQ com quatro perguntas
 7. **CTA final** — seletor de cidade e os dois botões de novo
-8. **Rodapé** — marca e Instagram
+8. **Rodapé** — marca e links sociais (Instagram, YouTube, TikTok)
 9. **Barra fixa** — só no celular, aparece quando o botão do topo sai da tela
 
 ### Ordem no celular
@@ -253,6 +253,8 @@ num alvo pequeno. Um alvo de toque no lugar de três.
 | Grupo Fortaleza & Salvador | `https://chat.whatsapp.com/CEX3t7DDpuGIw30QyJNn1O?mode=gi_t` |
 | Cotação direta | `https://wa.me/5581997869326` |
 | Instagram | `https://www.instagram.com/contandoviagenss/` |
+| YouTube | `https://www.youtube.com/@contandoviagenss` |
+| TikTok | `https://www.tiktok.com/@contandoviagens` |
 
 A mensagem que abre no WhatsApp da cotação:
 **"Olá, vim do site e gostaria de uma cotação para viajar"**
@@ -333,3 +335,4 @@ no caso dos grupos, o nome muda conforme a cidade escolhida no seletor.
 | 25/08 | **A oferta no centro.** Cards com foto do destino no hero, retrato movido para a seção de atendimento, seletor de cidade, caminho da cotação reforçado |
 | 09/09 | **Páginas legais.** Política de Privacidade e Termos de Serviço criados e linkados no rodapé; CSS para `v=4`. Exigência do Google para verificar o app OAuth que publica no YouTube — a política descreve o escopo `youtube.upload` e o Uso Limitado, e cita o Meta Pixel. Razão social, CNPJ e CNAE preenchidos a partir do cartão CNPJ. Endereço publicado só como "Recife/PE" — o logradouro do cartão é de Empresário Individual e não é exigido pela LGPD |
 | 03/09 | Botão "Falar com a agência" restaurado no cabeçalho (tinha sido perdido na migração), README criado, `founder.png`/`bg.png`/`Dockerfile` antigo apagados, build trocado de Nixpacks para Dockerfile próprio com `Cache-Control` correto (nginx 1.27.5), causa raiz do webhook diagnosticada |
+| 09/09 | Links de YouTube e TikTok adicionados no cabeçalho e no rodapé, ao lado do Instagram |
