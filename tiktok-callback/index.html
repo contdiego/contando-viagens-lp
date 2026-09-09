@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B3040">
+<title>Autorização TikTok | Contando Viagens</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600&display=swap">
+<link rel="stylesheet" href="../style.css?v=3">
+<style>
+.doc{width:min(700px,calc(100% - 40px));margin:0 auto;padding:64px 0 96px}
+.doc h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;color:var(--petrol);margin:0 0 10px}
+.doc p{color:#33454E;font-size:1rem;line-height:1.7;margin:0 0 14px}
+.code{background:var(--teal-soft);border-left:3px solid var(--teal);padding:20px 22px;margin:24px 0;border-radius:2px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9rem;word-break:break-all;color:#0B3040}
+button{font-family:inherit;font-size:.95rem;font-weight:600;color:#fff;background:var(--petrol);
+       border:0;border-radius:999px;padding:13px 26px;cursor:pointer}
+button:hover{opacity:.9}
+.err{border-left-color:#B3261E;background:#FDECEA;color:#5F1A14}
+.hint{color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="/">
+      <span class="brand-mark"><img src="../logo.png" alt="" width="128" height="128"></span>
+      <span class="brand-name">Contando Viagens</span>
+    </a>
+  </div>
+</header>
+
+<main class="doc">
+  <h1 id="ttl">Autorização concluída</h1>
+  <p id="sub">Copie o código abaixo e cole no terminal, na pergunta do script <code>autorizar-tiktok.py</code>.</p>
+  <div class="code" id="box">carregando…</div>
+  <button id="btn" type="button">Copiar código</button>
+  <p class="hint" id="hint">Este código vale por poucos minutos e só serve uma vez.</p>
+</main>
+
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var code = q.get('code');
+  var err = q.get('error') || q.get('error_description');
+  var box = document.getElementById('box');
+  var btn = document.getElementById('btn');
+
+  if (!code) {
+    document.getElementById('ttl').textContent = 'Autorização não concluída';
+    document.getElementById('sub').textContent = 'O TikTok não devolveu um código. Rode o script de novo e autorize com a conta @contandoviagens.';
+    box.className = 'code err';
+    box.textContent = err || 'Nenhum código recebido nesta URL.';
+    btn.style.display = 'none';
+    return;
+  }
+
+  box.textContent = decodeURIComponent(code);
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(decodeURIComponent(code)).then(function () {
+      btn.textContent = 'Copiado';
+    }, function () {
+      var r = document.createRange(); r.selectNodeContents(box);
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selecionado — use Cmd+C';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -10,5 +10,6 @@ COPY index.html style.css script.js founder.jpg logo.png fortaleza.jpg noronha.j
 # aqui, senao vai para o GitHub, o deploy passa e a URL responde 404.
 COPY privacidade/ /usr/share/nginx/html/privacidade/
 COPY termos/ /usr/share/nginx/html/termos/
+COPY tiktok-callback/ /usr/share/nginx/html/tiktok-callback/
 
 EXPOSE 80
