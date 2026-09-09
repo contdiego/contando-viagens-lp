@@ -105,6 +105,12 @@ não muda). Se isso acontecer, usar **Forçar Reconstrução** (menu de ferramen
 botão Implantar) para ignorar o cache e buildar de verdade — dá para confirmar pelo log, que
 deve mostrar os passos `docker build` completos (`FROM nginx:1.27-alpine`, `COPY`, etc.).
 
+**Cuidado com o `overflow` do hero:** a coluna esquerda do hero usa `position:sticky` no
+desktop, e sticky não funciona dentro de um elemento com `overflow:hidden`. Por isso o
+`.hero{overflow:hidden}` só existe dentro do media query de até 1000px, onde ele é necessário
+para conter o carrossel de ofertas (que sangra pela borda com margem negativa). Se voltar a
+pôr `overflow:hidden` no `.hero` base, a coluna para de acompanhar a rolagem.
+
 **Cuidado ao trocar uma foto:** as imagens ficam 7 dias em cache pelo nome do arquivo. Se
 substituir uma foto mantendo o mesmo nome, quem já visitou continua vendo a antiga. Use nome
 novo (`madri-2.jpg`) e atualize a referência no `index.html`.
@@ -180,7 +186,7 @@ A economia visual é o que faz a página parecer cara.
 ## 5. Estrutura da página
 
 1. **Cabeçalho fixo** — marca, links sociais (Instagram, YouTube, TikTok), botão de cotação (escondido no celular)
-2. **Hero** — título, subtítulo, **cards de oferta**, seletor de cidade, dois botões
+2. **Hero** — título, subtítulo, **cards de oferta**, seletor de cidade, dois botões, bloco de curadoria com o retrato (só no desktop)
 3. **Como funciona** — três passos numerados
 4. **Quem está do outro lado** — faixa escura com o retrato do Diego
 5. **Sua viagem inteira** — os 10 serviços da agência em índice de duas colunas
@@ -336,3 +342,4 @@ no caso dos grupos, o nome muda conforme a cidade escolhida no seletor.
 | 09/09 | **Páginas legais.** Política de Privacidade e Termos de Serviço criados e linkados no rodapé; CSS para `v=4`. Exigência do Google para verificar o app OAuth que publica no YouTube — a política descreve o escopo `youtube.upload` e o Uso Limitado, e cita o Meta Pixel. Razão social, CNPJ e CNAE preenchidos a partir do cartão CNPJ. Endereço publicado só como "Recife/PE" — o logradouro do cartão é de Empresário Individual e não é exigido pela LGPD |
 | 03/09 | Botão "Falar com a agência" restaurado no cabeçalho (tinha sido perdido na migração), README criado, `founder.png`/`bg.png`/`Dockerfile` antigo apagados, build trocado de Nixpacks para Dockerfile próprio com `Cache-Control` correto (nginx 1.27.5), causa raiz do webhook diagnosticada |
 | 09/09 | Links de YouTube e TikTok adicionados no cabeçalho e no rodapé, ao lado do Instagram |
+| 09/09 | Hero do desktop sem o vazio: coluna esquerda alinhada no topo e fixa na rolagem, bloco de curadoria com retrato, cards de 322px para 288px |
