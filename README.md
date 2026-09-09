@@ -116,7 +116,14 @@ madri.jpg         foto do card REC · FOR → MAD
 founder.jpg       retrato do Diego, seção "quem está do outro lado"
 logo.png          marca no cabeçalho, rodapé e favicon
 _mockups/         propostas de design (ignorado pelo git)
+
+privacidade/index.html   Política de Privacidade
+termos/index.html        Termos de Serviço
 ```
+
+As duas páginas legais são servidas como diretório (`/privacidade/`, `/termos/`), que é o
+que o `try_files $uri $uri/` do nginx resolve. Não renomear para `privacidade.html` — nessa
+forma o nginx devolve 404.
 
 **Peso da primeira carga:** cerca de 491 KB. O `founder.jpg` carrega só quando o visitante
 rola até ele, e a foto de Fortaleza é pré-carregada por abrir a fileira.
@@ -315,4 +322,5 @@ no caso dos grupos, o nome muda conforme a cidade escolhida no seletor.
 | 23/08 | Versão nos arquivos e conteúdo à prova de JS quebrado, depois do incidente de cache |
 | 23/08 | Nova mensagem de cotação no WhatsApp |
 | 25/08 | **A oferta no centro.** Cards com foto do destino no hero, retrato movido para a seção de atendimento, seletor de cidade, caminho da cotação reforçado |
+| 09/09 | **Páginas legais.** Política de Privacidade e Termos de Serviço criados e linkados no rodapé; CSS para `v=4`. Exigência do Google para verificar o app OAuth que publica no YouTube — a política descreve o escopo `youtube.upload` e o Uso Limitado, e cita o Meta Pixel. Razão social, CNPJ e CNAE preenchidos a partir do cartão CNPJ. Endereço publicado só como "Recife/PE" — o logradouro do cartão é de Empresário Individual e não é exigido pela LGPD |
 | 03/09 | Botão "Falar com a agência" restaurado no cabeçalho (tinha sido perdido na migração), README criado, `founder.png`/`bg.png`/`Dockerfile` antigo apagados, build trocado de Nixpacks para Dockerfile próprio com `Cache-Control` correto (nginx 1.27.5), causa raiz do webhook diagnosticada |

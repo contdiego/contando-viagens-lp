@@ -272,3 +272,10 @@ details[open] .faq-sign::after{transform:scaleY(0)}
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
   .rail{scroll-behavior:auto}
 }
+
+
+/* ---------- links legais no rodape ---------- */
+.foot-legal{display:flex;gap:18px;flex-wrap:wrap}
+.foot-legal a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s ease}
+.foot-legal a:hover{color:var(--petrol);text-decoration:underline;text-underline-offset:2px}
+@media (max-width:640px){.foot-legal{width:100%;justify-content:center;margin-top:4px}}
