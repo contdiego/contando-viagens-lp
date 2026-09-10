@@ -105,6 +105,11 @@ não muda). Se isso acontecer, usar **Forçar Reconstrução** (menu de ferramen
 botão Implantar) para ignorar o cache e buildar de verdade — dá para confirmar pelo log, que
 deve mostrar os passos `docker build` completos (`FROM nginx:1.27-alpine`, `COPY`, etc.).
 
+**Cuidado ao acrescentar rede social:** cada ícone novo entra em duas fileiras `.social-links`
+(cabeçalho e rodapé). Os handles ao lado de cada ícone ficam escondidos (`.topbar .ig span,
+.foot .ig span{display:none}`) porque quatro vezes "@contandoviagens" na mesma linha não cabia
+no iPad e poluía. O handle aparece uma vez só, no rodapé, na `<span class="social-handle">`.
+
 **Cuidado com o `overflow` do hero:** a coluna esquerda do hero usa `position:sticky` no
 desktop, e sticky não funciona dentro de um elemento com `overflow:hidden`. Por isso o
 `.hero{overflow:hidden}` só existe dentro do media query de até 1000px, onde ele é necessário
@@ -185,14 +190,14 @@ A economia visual é o que faz a página parecer cara.
 
 ## 5. Estrutura da página
 
-1. **Cabeçalho fixo** — marca, links sociais (Instagram, YouTube, TikTok), botão de cotação (escondido no celular)
+1. **Cabeçalho fixo** — marca, quatro ícones sociais (Instagram, YouTube, TikTok, LinkedIn), botão de cotação (escondido no celular)
 2. **Hero** — título, subtítulo, **cards de oferta**, seletor de cidade, dois botões, bloco de curadoria com o retrato (só no desktop)
 3. **Como funciona** — três passos numerados
 4. **Quem está do outro lado** — faixa escura com o retrato do Diego
 5. **Sua viagem inteira** — os 10 serviços da agência em índice de duas colunas
 6. **Sem letra miúda** — FAQ com quatro perguntas
 7. **CTA final** — seletor de cidade e os dois botões de novo
-8. **Rodapé** — marca e links sociais (Instagram, YouTube, TikTok)
+8. **Rodapé** — marca, `@contandoviagens` e os quatro ícones sociais
 9. **Barra fixa** — só no celular, aparece quando o botão do topo sai da tela
 
 ### Ordem no celular
@@ -261,6 +266,8 @@ num alvo pequeno. Um alvo de toque no lugar de três.
 | Instagram | `https://www.instagram.com/contandoviagenss/` |
 | YouTube | `https://www.youtube.com/@contandoviagenss` |
 | TikTok | `https://www.tiktok.com/@contandoviagens` |
+| LinkedIn da agência | `https://www.linkedin.com/company/contandoviagens` |
+| LinkedIn do Diego | `https://www.linkedin.com/in/contandoviagens` |
 
 A mensagem que abre no WhatsApp da cotação:
 **"Olá, vim do site e gostaria de uma cotação para viajar"**
@@ -343,3 +350,4 @@ no caso dos grupos, o nome muda conforme a cidade escolhida no seletor.
 | 03/09 | Botão "Falar com a agência" restaurado no cabeçalho (tinha sido perdido na migração), README criado, `founder.png`/`bg.png`/`Dockerfile` antigo apagados, build trocado de Nixpacks para Dockerfile próprio com `Cache-Control` correto (nginx 1.27.5), causa raiz do webhook diagnosticada |
 | 09/09 | Links de YouTube e TikTok adicionados no cabeçalho e no rodapé, ao lado do Instagram |
 | 09/09 | Hero do desktop sem o vazio: coluna esquerda alinhada no topo e fixa na rolagem, bloco de curadoria com retrato, cards de 322px para 288px |
+| 10/09 | LinkedIn da agência na fileira social; nome do Diego virou link para o LinkedIn pessoal (no hero e na assinatura da seção de atendimento); cabeçalho e rodapé passaram a mostrar só os ícones, com o handle uma vez no rodapé; corrigido seletor `.human-sign` sem chaves que anulava a animação de entrada |
