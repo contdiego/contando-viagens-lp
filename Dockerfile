@@ -15,5 +15,6 @@ COPY tiktokeodoWsQHItnG3L60AEjC7oulHVTbNGCc.txt /usr/share/nginx/html/
 COPY privacidade/ /usr/share/nginx/html/privacidade/
 COPY termos/ /usr/share/nginx/html/termos/
 COPY tiktok-callback/ /usr/share/nginx/html/tiktok-callback/
+COPY linkedin-callback/ /usr/share/nginx/html/linkedin-callback/
 
 EXPOSE 80
